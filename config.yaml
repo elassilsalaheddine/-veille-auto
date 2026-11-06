@@ -1,0 +1,61 @@
+# Configuration de la veille automatique
+# --------------------------------------
+# days_back : on ne garde que les articles publiés dans les N derniers jours.
+# Chaque thème a des mots-clés (insensibles à la casse) et une liste de flux.
+# Un flux avec "all: true" garde tous ses articles, sans filtre de mots-clés
+# (utile pour les notes de version, où chaque élément compte).
+#
+# Les URL marquées "à vérifier" sont à tester une fois : si un flux ne répond
+# pas, le résumé le signale dans la section "Flux en erreur".
+
+days_back: 7
+max_per_theme: 15
+output_dir: digests
+
+themes:
+  securite:
+    title: "Sécurité (CVE, alertes)"
+    keywords: [CVE, vulnérabilité, vulnerability, faille, alerte, exploit, Python, PHP, PostgreSQL]
+    feeds:
+      - name: "CERT-FR (ANSSI) – publications"
+        url: "https://www.cert.ssi.gouv.fr/feed/"          # à vérifier
+        all: true
+
+  reglementation:
+    title: "Réglementation (RGPD, AI Act)"
+    keywords: [RGPD, GDPR, "AI Act", "règlement IA", "intelligence artificielle", sanction, CNIL, "données personnelles"]
+    feeds:
+      - name: "CNIL – actualités"
+        url: "https://www.cnil.fr/fr/rss.xml"              # à vérifier
+        all: false
+
+  outils:
+    title: "Mes outils (nouvelles versions)"
+    keywords: []
+    feeds:
+      - name: "scikit-learn – releases"
+        url: "https://github.com/scikit-learn/scikit-learn/releases.atom"
+        all: true
+      - name: "PyTorch – releases"
+        url: "https://github.com/pytorch/pytorch/releases.atom"
+        all: true
+      - name: "FastAPI – releases"
+        url: "https://github.com/fastapi/fastapi/releases.atom"
+        all: true
+      - name: "pandas – releases"
+        url: "https://github.com/pandas-dev/pandas/releases.atom"
+        all: true
+      - name: "Transformers (Hugging Face) – releases"
+        url: "https://github.com/huggingface/transformers/releases.atom"
+        all: true
+
+  ia:
+    title: "IA générative et LLM"
+    keywords: [LLM, agent, RAG, transformer, fine-tuning, multimodal, benchmark, open source, Mistral, Llama]
+    feeds:
+      - name: "Hugging Face – blog"
+        url: "https://huggingface.co/blog/feed.xml"         # à vérifier
+        all: false
+      - name: "arXiv – cs.AI"
+        url: "https://rss.arxiv.org/rss/cs.AI"
+        all: false
